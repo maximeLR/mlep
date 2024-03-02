@@ -9,10 +9,16 @@ app = Flask(__name__)
 api = Api(app)
 
 forecaster = Forecaster()
-api.add_resource(ForecastHandler, '/forecast', resource_class_kwargs={'forecaster': forecaster})
+api.add_resource(
+    ForecastHandler, "/forecast", resource_class_kwargs={"forecaster": forecaster}
+)
 
-if __name__ == '__main__':
-    logging.basicConfig(filename='app.log', level=logging.INFO, format='%(asctime)s | %(name)s | %(levelname)s | %(message)s')
-    logging.info('Main app sequence begun')
-    app.run(debug=True, host='0.0.0.0', port=5000) # change debug=False in production
-    logging.info('App finished')
+if __name__ == "__main__":
+    logging.basicConfig(
+        filename="app.log",
+        level=logging.INFO,
+        format="%(asctime)s | %(name)s | %(levelname)s | %(message)s",
+    )
+    logging.info("Main app sequence begun")
+    app.run(debug=True, host="0.0.0.0", port=5000)  # change debug=False in production
+    logging.info("App finished")

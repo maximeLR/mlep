@@ -1,0 +1,16 @@
+artifact_uri: file:///home/mleroch/dev/mlep/mlruns/0/7b543df3daac41408a75d58dcbab09b3/artifacts
+deleted_time: 1709381873687
+end_time: 1709381670408
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: deleted
+run_id: 7b543df3daac41408a75d58dcbab09b3
+run_name: fearless-roo-990
+run_uuid: 7b543df3daac41408a75d58dcbab09b3
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1709381665890
+status: 4
+tags: []
+user_id: mleroch

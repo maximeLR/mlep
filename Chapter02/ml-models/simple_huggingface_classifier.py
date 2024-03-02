@@ -21,4 +21,3 @@ y = y == 2
 X_train, X_test, y_train, y_test = train_test_split(X, y, random_state=42)
 
 print(model.predict(X_test))
-

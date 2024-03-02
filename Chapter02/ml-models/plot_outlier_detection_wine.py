@@ -30,5 +30,3 @@ for i, (clf_name, clf) in enumerate(classifiers.items()):
     clf.fit(X1)
     Z1 = clf.decision_function(np.c_[xx1.ravel(), yy1.ravel()])
     Z1 = Z1.reshape(xx1.shape)
-
-

@@ -1,17 +1,17 @@
 # MIT License
-# 
+#
 # Copyright (c) Andy McMahon 2023
-# 
+#
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
 # in the Software without restriction, including without limitation the rights
 # to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 # copies of the Software, and to permit persons to whom the Software is
 # furnished to do so, subject to the following conditions:
-# 
+#
 # The above copyright notice and this permission notice shall be included in all
 # copies or substantial portions of the Software.
-# 
+#
 # THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 # IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 # FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -19,7 +19,7 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
-# 
+#
 import os
 from typing import Type
 
@@ -30,6 +30,7 @@ from artifacts import ModelMetadata
 from zenml.enums import ArtifactType
 from zenml.io import fileio
 from zenml.materializers.base_materializer import BaseMaterializer
+
 
 class ModelMetadataMaterializer(BaseMaterializer):
     """Custom materializer for the `ModelMetadata` artifact data type.
@@ -52,17 +53,17 @@ class ModelMetadataMaterializer(BaseMaterializer):
     the in-memory data stored in the artifact to the provided URI and
     vice-versa. ZenML puts at your disposal a series of I/O utilities capable of
     universally handling these URLs in the `zenml.io.fileio`,
-    `zenml.utils.io_utils` and `zenml.utils.yaml_utils` Python modules.  
+    `zenml.utils.io_utils` and `zenml.utils.yaml_utils` Python modules.
 
     More information about custom step artifact data types and ZenML
     materializers is available in the docs:
 
       https://docs.zenml.io/advanced-guide/pipelines/materializers
-    
+
     """
 
     # This needs to point to the artifact data type(s) associated with the
-    # materializer 
+    # materializer
     ASSOCIATED_TYPES = (ModelMetadata,)
     ASSOCIATED_ARTIFACT_TYPE = ArtifactType.DATA
 
@@ -85,13 +86,13 @@ class ModelMetadataMaterializer(BaseMaterializer):
         not directly aware of ZenML's I/O and cannot be modified to use it.
 
         Args:
-            model_metadata: model metadata object to save to the artifact store.            
+            model_metadata: model metadata object to save to the artifact store.
         """
         super().save(model_metadata)
 
         ### ADD YOUR OWN CODE HERE - THIS IS JUST AN EXAMPLE ###
         # Dump the model metadata directly into the artifact store as a YAML file
-        with fileio.open(os.path.join(self.uri, 'model_metadata.yaml'), 'w') as f:
+        with fileio.open(os.path.join(self.uri, "model_metadata.yaml"), "w") as f:
             f.write(yaml.dump(model_metadata.metadata))
         ### YOUR CODE ENDS HERE ###
 
@@ -117,7 +118,7 @@ class ModelMetadataMaterializer(BaseMaterializer):
 
         Args:
             data_type: the artifact data type (model metadata)
-        
+
         Returns:
             A model metadata artifact instance materialized from the artifact
             store.
@@ -125,7 +126,7 @@ class ModelMetadataMaterializer(BaseMaterializer):
         super().load(data_type)
 
         ### ADD YOUR OWN CODE HERE - THIS IS JUST AN EXAMPLE ###
-        with fileio.open(os.path.join(self.uri, 'data.txt'), 'r') as f:
+        with fileio.open(os.path.join(self.uri, "data.txt"), "r") as f:
             model_metadata = ModelMetadata()
             model_metadata.metadata = yaml.safe_load(f.read())
         ### YOUR CODE ENDS HERE ###

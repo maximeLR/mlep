@@ -5,49 +5,59 @@ from pyspark import SparkContext
 
 from pyspark.sql import functions as f
 from pyspark.mllib.evaluation import BinaryClassificationMetrics, MulticlassMetrics
-from pyspark.ml.feature import StandardScaler, OneHotEncoder, StringIndexer, Imputer, VectorAssembler
+from pyspark.ml.feature import (
+    StandardScaler,
+    OneHotEncoder,
+    StringIndexer,
+    Imputer,
+    VectorAssembler,
+)
 
 from pyspark.ml import Pipeline, PipelineModel
 from pyspark.ml.classification import LogisticRegression
 
-def model_bank_data(spark, input_path, output_path):
-    data = spark.read.format("csv")\
-        .option("sep", ";")\
-        .option("inferSchema", "true")\
-        .option("header", "true")\
-        .load(input_path)
 
-    data = data.withColumn('label', f.when((f.col("y") == "yes"), 1).otherwise(0))
+def model_bank_data(spark, input_path, output_path):
+    data = (
+        spark.read.format("csv")
+        .option("sep", ";")
+        .option("inferSchema", "true")
+        .option("header", "true")
+        .load(input_path)
+    )
+
+    data = data.withColumn("label", f.when((f.col("y") == "yes"), 1).otherwise(0))
 
     # ...
 
-    data.write.format('parquet')\
-        .mode('overwrite')\
-        .save(output_path)
+    data.write.format("parquet").mode("overwrite").save(output_path)
+
 
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument(
-        '--input_path', help='S3 bucket path for the input data. Assume to be csv for this case.'
+        "--input_path",
+        help="S3 bucket path for the input data. Assume to be csv for this case.",
     )
     parser.add_argument(
-        '--output_path', help='S3 bucket path for the output data. Assume to be parquet for this case'
+        "--output_path",
+        help="S3 bucket path for the output data. Assume to be parquet for this case",
     )
     args = parser.parse_args()
 
     # Create spark context
     sc = SparkContext("local", "pipelines")
     # Get spark session
-    spark = SparkSession\
-        .builder\
-        .appName('MLEIP Bank Data Classifier EMR Example')\
-        .getOrCreate()
+    spark = SparkSession.builder.appName(
+        "MLEIP Bank Data Classifier EMR Example"
+    ).getOrCreate()
 
     model_bank_data(
         spark,
-        input_path=args.input_path,#"s3://mlewp-ch6-emr-examples/bank.csv",
-        output_path=args.output_path#"s3://mlewp-ch6-emr-examples/results.parquet"
+        input_path=args.input_path,  # "s3://mlewp-ch6-emr-examples/bank.csv",
+        output_path=args.output_path,  # "s3://mlewp-ch6-emr-examples/results.parquet"
     )
+
 
 if __name__ == "__main__":
     main()
