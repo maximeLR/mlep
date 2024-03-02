@@ -1,0 +1,9 @@
+[
+  {
+    "model": "IsolationForest",
+    "params": {
+      "contamination": 0.15,
+      "random_state": 42
+    }
+  }
+]
