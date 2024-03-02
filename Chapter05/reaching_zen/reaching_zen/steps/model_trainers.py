@@ -69,9 +69,7 @@ class ModelTrainerStepParameters(BaseParameters):
 
     ### ADD YOUR OWN CODE HERE - THIS IS JUST AN EXAMPLE ###
     # The name of the scikit-learn classifier model to train.
-    model: SklearnClassifierModel = (
-        SklearnClassifierModel.RandomForestClassifier
-    )
+    model: SklearnClassifierModel = SklearnClassifierModel.RandomForestClassifier
     # The random seed to use for reproducibility.
     random_state: int = 42
     # The parameters to pass to the model constructor.
@@ -276,13 +274,9 @@ def model_evaluator(
 
     messages = []
     if train_acc < params.min_train_accuracy:
-        messages.append(
-            f"Train accuracy is below {params.min_train_accuracy*100}% !"
-        )
+        messages.append(f"Train accuracy is below {params.min_train_accuracy*100}% !")
     if test_acc < params.min_test_accuracy:
-        messages.append(
-            f"Test accuracy is below {params.min_test_accuracy*100}% !"
-        )
+        messages.append(f"Test accuracy is below {params.min_test_accuracy*100}% !")
     if test_acc - train_acc > params.max_train_test_accuracy_difference:
         messages.append(
             f"Train accuracy is more than "

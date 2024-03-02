@@ -5,17 +5,18 @@ from airflow.operators.python import PythonOperator
 from airflow.utils.dates import days_ago
 
 import logging
+
 logging.basicConfig(level=logging.INFO)
 
 default_args = {
-    'owner': 'Andrew McMahon',
-    'depends_on_past': False,
-    'start_date': days_ago(2),
-    'email': ['example@example.com'],
-    'email_on_failure': False,
-    'email_on_retry': False,
-    'retries': 1,
-    'retry_delay': timedelta(minutes=2),
+    "owner": "Andrew McMahon",
+    "depends_on_past": False,
+    "start_date": days_ago(2),
+    "email": ["example@example.com"],
+    "email_on_failure": False,
+    "email_on_retry": False,
+    "retries": 1,
+    "retry_delay": timedelta(minutes=2),
     # 'queue': 'bash_queue',
     # 'pool': 'backfill',
     # 'priority_weight': 10,
@@ -31,14 +32,18 @@ default_args = {
     # 'trigger_rule': 'all_success'
 }
 
+
 def get_data():
     pass
+
 
 def train_model():
     pass
 
+
 def persist_model():
     pass
+
 
 with DAG(
     dag_id="classification_pipeline",
@@ -49,27 +54,21 @@ with DAG(
 
     logging.info("DAG started ...")
     logging.info("Extracting and clustering data ...")
-    get_data_task = PythonOperator(
-        task_id="get_data",
-        python_callable=get_data
-    )
-    
+    get_data_task = PythonOperator(task_id="get_data", python_callable=get_data)
+
     logging.info("Extracting and summarizing data ...")
     train_model_task = PythonOperator(
-        task_id="train_model",
-        python_callable=train_model
+        task_id="train_model", python_callable=train_model
     )
-    
+
     logging.info("Persisting model ...")
     persist_model_task = PythonOperator(
-        task_id="persist_model",
-        python_callable=persist_model
+        task_id="persist_model", python_callable=persist_model
     )
-    
+
     get_data_task >> train_model_task >> persist_model_task
-    
-    
-    
+
+
 # #instantiate DAG
 # dag = DAG(
 #     'classification_pipeline',

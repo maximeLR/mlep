@@ -21,9 +21,11 @@ rfc = RandomForestClassifier(n_estimators=10, random_state=42)
 rfc.fit(X_train, y_train)
 
 # Dump file to joblib
-joblib.dump(rfc, 'rfc.joblib')
+joblib.dump(rfc, "rfc.joblib")
 
-metrics = classification_report(y_true=y_test, y_pred=rfc.predict(X_test), output_dict=True)
+metrics = classification_report(
+    y_true=y_test, y_pred=rfc.predict(X_test), output_dict=True
+)
 
 print(metrics)
 # {
@@ -53,4 +55,3 @@ print(metrics)
 #         'support': 45
 #     }
 # }
- 

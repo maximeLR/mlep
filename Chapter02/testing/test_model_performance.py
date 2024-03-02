@@ -10,6 +10,7 @@ from sklearn.metrics import classification_report
 
 import joblib
 
+
 @pytest.fixture
 def test_dataset() -> Union[np.array, np.array]:
     # Load the dataset
@@ -19,6 +20,7 @@ def test_dataset() -> Union[np.array, np.array]:
     # Train and test split
     X_train, X_test, y_train, y_test = train_test_split(X, y, random_state=42)
     return X_test, y_test
+
 
 @pytest.fixture
 def model() -> sklearn.ensemble._forest.RandomForestClassifier:
@@ -33,9 +35,12 @@ def test_model_inference_types(model, test_dataset):
     assert isinstance(test_dataset[0], np.ndarray)
     assert isinstance(test_dataset[1], np.ndarray)
 
+
 def test_model_performance(model, test_dataset):
-    metrics = classification_report(y_true=test_dataset[1], y_pred=model.predict(test_dataset[0]), output_dict=True)
-    assert metrics['False']['f1-score'] > 0.95
-    assert metrics['False']['precision'] > 0.9
-    assert metrics['True']['f1-score'] > 0.8
-    assert metrics['True']['precision'] > 0.8
+    metrics = classification_report(
+        y_true=test_dataset[1], y_pred=model.predict(test_dataset[0]), output_dict=True
+    )
+    assert metrics["False"]["f1-score"] > 0.95
+    assert metrics["False"]["precision"] > 0.9
+    assert metrics["True"]["f1-score"] > 0.8
+    assert metrics["True"]["precision"] > 0.8

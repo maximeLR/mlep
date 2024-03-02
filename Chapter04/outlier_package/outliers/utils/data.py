@@ -1,5 +1,6 @@
 from sklearn.datasets import make_blobs
 
+
 def create_data():
     # Define datasets
     # Example settings

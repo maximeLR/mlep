@@ -2,6 +2,7 @@
 Simulate taxi ride data for clustering.
 
 """
+
 import logging
 import numpy as np
 import pandas as pd

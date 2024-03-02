@@ -4,14 +4,14 @@ from airflow.operators.bash_operator import BashOperator
 from airflow.utils.dates import days_ago
 
 default_args = {
-    'owner': 'Andrew McMahon',
-    'depends_on_past': False,
-    'start_date': days_ago(2),
-    'email': ['example@example.com'],
-    'email_on_failure': False,
-    'email_on_retry': False,
-    'retries': 1,
-    'retry_delay': timedelta(minutes=2),
+    "owner": "Andrew McMahon",
+    "depends_on_past": False,
+    "start_date": days_ago(2),
+    "email": ["example@example.com"],
+    "email_on_failure": False,
+    "email_on_retry": False,
+    "retries": 1,
+    "retry_delay": timedelta(minutes=2),
     # 'queue': 'bash_queue',
     # 'pool': 'backfill',
     # 'priority_weight': 10,
@@ -28,36 +28,36 @@ default_args = {
 }
 
 
-#instantiate DAG
+# instantiate DAG
 dag = DAG(
-    'classification_pipeline',
+    "classification_pipeline",
     default_args=default_args,
-    description=’Basic pipeline for classifying the Wine Dataset',
-    schedule_interval=timedelta(days=1), # run daily? check
+    description="Basic pipeline for classifying the Wine Dataset",
+    schedule_interval=timedelta(days=1),  # run daily? check
 )
 
 
 get_data = BashOperator(
-    task_id='get_data',
-    bash_command='python3 /usr/local/airflow/scripts/get_data.py',
+    task_id="get_data",
+    bash_command="python3 /usr/local/airflow/scripts/get_data.py",
     dag=dag,
 )
 
-train_model= BashOperator(
-    task_id='train_model',
+train_model = BashOperator(
+    task_id="train_model",
     depends_on_past=False,
-    bash_command='python3 /usr/local/airflow/scripts/train_model.py',
+    bash_command="python3 /usr/local/airflow/scripts/train_model.py",
     retries=3,
     dag=dag,
 )
 
 # Persist to MLFlow
 persist_model = BashOperator(
-    task_id='persist_model',
+    task_id="persist_model",
     depends_on_past=False,
-    bash_command=’python ……./persist_model.py,
+    bash_command="python ……./persist_model.py",
     retries=3,
     dag=dag,
 )
 
-get_data >> train_model >> persist_model 
+get_data >> train_model >> persist_model
