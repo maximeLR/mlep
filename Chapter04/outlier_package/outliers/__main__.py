@@ -11,6 +11,8 @@ if __name__ == "__main__":
     for model in models:
         detector = detectors.pipelines.OutlierDetector(model=model)
         result = detector.detect(data)
-        df_data_results = pd.DataFrame(data=zip(data, result), columns=['features', 'result'])
-        print(len(df_data_results[df_data_results['result']==-1]))
-        print(len(result[result==-1]))
+        df_data_results = pd.DataFrame(
+            data=zip(data, result), columns=["features", "result"]
+        )
+        print(len(df_data_results[df_data_results["result"] == -1]))
+        print(len(result[result == -1]))

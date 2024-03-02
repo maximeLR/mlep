@@ -1,14 +1,15 @@
-'''
+"""
 This script executes the DBSCAN clustering algorithm on the simulated taxi ride dataset.
 
 It 
-'''
+"""
 
-#from simulate_data import simulate_ride_data
+# from simulate_data import simulate_ride_data
 import pandas as pd
 import numpy as np
 import datetime
 import logging
+
 logging.basicConfig(level=logging.INFO)
 
 import boto3
@@ -17,20 +18,19 @@ from sklearn.cluster import DBSCAN
 from utils.extractor import Extractor
 
 model_params = {
-    'eps': 0.3,
-    'min_samples': 10,
+    "eps": 0.3,
+    "min_samples": 10,
 }
+
 
 class Clusterer:
     def __init__(
-        self, bucket_name: str, 
-        file_name: str, 
-        model_params: dict = model_params
+        self, bucket_name: str, file_name: str, model_params: dict = model_params
     ) -> None:
         self.model_params = model_params
         self.bucket_name = bucket_name
         self.file_name = file_name
-        
+
     def cluster_and_label(self, features: list) -> None:
         extractor = Extractor(self.bucket_name, self.file_name)
         df = extractor.extract_data()
@@ -44,15 +44,15 @@ class Clusterer:
         labels = db.labels_
 
         # Add labels to the dataset and return.
-        df['label'] = labels
-        
+        df["label"] = labels
+
         date = datetime.datetime.now().strftime("%Y%m%d")
-        boto3.client('s3').put_object(
-            Body=df.to_json(orient='records'), 
-            Bucket=self.bucket_name, 
-            Key=f"clustered_data_{date}.json"
+        boto3.client("s3").put_object(
+            Body=df.to_json(orient="records"),
+            Bucket=self.bucket_name,
+            Key=f"clustered_data_{date}.json",
         )
-        
+
 
 # #==========================================
 # # Clustering with DBSCAN
@@ -89,16 +89,16 @@ class Clusterer:
 #     return data
 
 # # if __name__ == "__main__":
-    
+
 # #     df = simulate_ride_data()
-    
+
 # #     logging.info('Simulating ride data ...')
 # #     X = df[['ride_dist', 'ride_time']]
-    
+
 # #     logging.info('Clustering and labelling')
 # #     results = cluster_and_label(X, create_and_show_plot=True)
 # #     df['label'] = results['labels']
-    
+
 # #     # Output your results to json
 # #     logging.info('Outputting to json ...')
 # #     df.to_json('taxi-labels.json', orient='records')

@@ -247,7 +247,10 @@ class DataSplitterStepParameters(BaseParameters):
 def data_splitter(
     params: DataSplitterStepParameters,
     dataset: pd.DataFrame,
-) -> Output(train_set=pd.DataFrame, test_set=pd.DataFrame,):
+) -> Output(
+    train_set=pd.DataFrame,
+    test_set=pd.DataFrame,
+):
     """Data splitter step.
 
     This is an example of a data splitter step that splits the dataset into

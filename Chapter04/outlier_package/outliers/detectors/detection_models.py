@@ -13,15 +13,14 @@ class DetectionModels(object):
         print(params)
         if model_name is None and params is None:
             return None
-        if model_name == 'IsolationForest' and params is not None:
+        if model_name == "IsolationForest" and params is not None:
             return IsolationForest(**params)
 
     def get_models(self):
         models = []
         for model_definition in self.model_def:
             defined_model = self.create_model(
-                model_name=model_definition['model'],
-                params=model_definition['params']
+                model_name=model_definition["model"], params=model_definition["params"]
             )
             models.append(defined_model)
         return models
