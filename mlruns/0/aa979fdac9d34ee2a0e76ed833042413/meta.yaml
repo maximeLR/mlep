@@ -1,0 +1,16 @@
+artifact_uri: file:///home/mleroch/dev/mlep/mlruns/0/aa979fdac9d34ee2a0e76ed833042413/artifacts
+deleted_time: 1709381873691
+end_time: 1709381590489
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: deleted
+run_id: aa979fdac9d34ee2a0e76ed833042413
+run_name: wise-moth-667
+run_uuid: aa979fdac9d34ee2a0e76ed833042413
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1709381569292
+status: 4
+tags: []
+user_id: mleroch

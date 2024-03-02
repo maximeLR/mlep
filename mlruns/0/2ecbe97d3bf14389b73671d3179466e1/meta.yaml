@@ -1,0 +1,16 @@
+artifact_uri: file:///home/mleroch/dev/mlep/mlruns/0/2ecbe97d3bf14389b73671d3179466e1/artifacts
+deleted_time: 1709381873690
+end_time: null
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: deleted
+run_id: 2ecbe97d3bf14389b73671d3179466e1
+run_name: melodic-goat-13
+run_uuid: 2ecbe97d3bf14389b73671d3179466e1
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1709381599620
+status: 1
+tags: []
+user_id: mleroch

@@ -1,0 +1,16 @@
+artifact_uri: file:///home/mleroch/dev/mlep/mlruns/0/9ccc5bf733124171bd0dc4fd14a2a5de/artifacts
+deleted_time: 1709381873692
+end_time: 1709381491488
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: deleted
+run_id: 9ccc5bf733124171bd0dc4fd14a2a5de
+run_name: masked-moth-896
+run_uuid: 9ccc5bf733124171bd0dc4fd14a2a5de
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1709381490298
+status: 4
+tags: []
+user_id: mleroch

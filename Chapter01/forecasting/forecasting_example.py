@@ -30,7 +30,7 @@ def plot_store_data(df: pd.DataFrame) -> None:
     ax.legend(['Truth'])
     current_ytick_values = plt.gca().get_yticks()
     plt.gca().set_yticklabels(['{:,.0f}'.format(x) for x in current_ytick_values])
-    plt.savefig('store_data.png')
+    plt.savefig('Chapter01/store_data.png')
     
 
         
@@ -102,7 +102,7 @@ def plot_forecast(df_train: pd.DataFrame, df_test: pd.DataFrame, predicted: pd.D
     ax.set_xlabel('Date')
     ax.set_ylabel('Sales')
     plt.tight_layout()
-    plt.savefig('store_data_forecast.png')
+    plt.savefig('Chapter01/store_data_forecast.png')
 
 
 
