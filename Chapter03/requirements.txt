@@ -157,6 +157,7 @@ pynndescent==0.5.10
 pyparsing==3.0.9
 pyrfr==0.8.3
 pyrsistent==0.19.3
+pyspark==3.5.1
 python-dateutil @ file:///home/conda/feedstock_root/build_artifacts/python-dateutil_1626286286081/work
 python-json-logger==2.0.7
 pytz==2023.3
