@@ -60,4 +60,3 @@ if __name__ == "__main__":
     )
 
     print(study.best_trial.params)
-    print(stu)
